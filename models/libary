@@ -1,0 +1,28 @@
+const mongoose = require("mongoose");
+const shortId = require('shortid');
+
+const schema = mongoose.Schema;
+
+const bookSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+    default: shortId.generate,
+    autoIncrement: true,
+    required: true,
+    unique: true,
+  },
+  title: {
+    type: String,
+required: [true, "Please provide book name"]
+  },
+  author: {
+    type: String,
+    required: true
+  },
+    genre: {
+      type: String,
+  required: true
+    }
+});
+
+module.exports = mongoose.model('Book', bookSchema);
